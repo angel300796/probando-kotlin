@@ -104,7 +104,7 @@ fun pantallaFormulario(navController: NavController){
                 onClick = {
                     val newId = RepositorioProductos.getNewId()
                     if ( tituloProducto != "" && descripcionProducto.isNotBlank() && descripcionProducto.length >= 10){
-                        RepositorioProductos.newProducto(Producto(newId,tituloProducto,imagenProducto,descripcionProducto))
+                        RepositorioProductos.newProducto(Producto(newId,tituloProducto,R.drawable.bolso,descripcionProducto))
                         navController.navigate("galeria")
                     }
                 },
