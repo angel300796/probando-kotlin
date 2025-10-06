@@ -2,8 +2,8 @@ package mx.curso.pildorasinformaticas.catalogo.ui.theme.pantallas
 
 import android.net.Uri
 import androidx.activity.compose.rememberLauncherForActivityResult
-import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -15,15 +15,14 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import coil3.compose.rememberAsyncImagePainter
 import mx.curso.pildorasinformaticas.catalogo.R
 import mx.curso.pildorasinformaticas.catalogo.data.Producto
 import mx.curso.pildorasinformaticas.catalogo.data.RepositorioProductos
@@ -70,22 +69,27 @@ fun pantallaFormulario(navController: NavController){
             imagenProducto = uri
         }
 
-        // Permisos para acceder a la galaria
-//        val permissionLauncher = rememberLauncherForActivityResult(
-//            contract = ActivityResultContracts.RequestPermission()
-//        ){
-//            isGranted ->
-//                if ( isGranted ) {
-//                    pickImageLauncher.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
-//                }
-//        }
         Button(
             // launch = funcion de lanzar
             // image/* = para seleccionar que tipo de imagen podemos seleccionar "jpg,npg,etc"
+//            onClick = { pickImageLauncher.launch("image/*") } solo selccionar puras imagenes ya almacenadas
             onClick = { pickImageLauncher.launch("image/*") }
         ) {
             Text("Seleccionar imagen")
         }
+        Spacer(modifier=Modifier.height(15.dp))
+        // vista previa de la imagen selccionada
+//        coil / glide / picasso
+
+//        let = si imagen uri no es null pasara el valor de la imagen dentro del bloque
+        imagenProducto?.let {
+            Image(
+                painter = rememberAsyncImagePainter(it),
+                contentDescription = "Imagen selccionada",
+                modifier=Modifier.fillMaxWidth().height(150.dp)
+            )
+        }
+
         Spacer(modifier=Modifier.height(15.dp))
         Row (
             modifier = Modifier
