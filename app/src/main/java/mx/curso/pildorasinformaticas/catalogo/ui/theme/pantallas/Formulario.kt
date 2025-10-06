@@ -71,14 +71,14 @@ fun pantallaFormulario(navController: NavController){
         }
 
         // Permisos para acceder a la galaria
-        val permissionLauncher = rememberLauncherForActivityResult(
-            contract = ActivityResultContracts.RequestPermission()
-        ){
-            isGranted ->
-                if ( isGranted ) {
-                    pickImageLauncher.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
-                }
-        }
+//        val permissionLauncher = rememberLauncherForActivityResult(
+//            contract = ActivityResultContracts.RequestPermission()
+//        ){
+//            isGranted ->
+//                if ( isGranted ) {
+//                    pickImageLauncher.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+//                }
+//        }
         Button(
             // launch = funcion de lanzar
             // image/* = para seleccionar que tipo de imagen podemos seleccionar "jpg,npg,etc"
